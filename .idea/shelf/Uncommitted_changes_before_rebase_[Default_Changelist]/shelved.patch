@@ -1,0 +1,916 @@
+Index: app/src/main/java/com/example/mvvmglobalnewsapp/ui/home/HomeViewModel.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/mvvmglobalnewsapp/ui/home/HomeViewModel.kt b/app/src/main/java/com/example/mvvmglobalnewsapp/ui/home/HomeViewModel.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/mvvmglobalnewsapp/ui/home/HomeViewModel.kt	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ /dev/null	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
+@@ -1,13 +0,0 @@
+-package com.example.mvvmglobalnewsapp.ui.home
+-
+-import androidx.lifecycle.LiveData
+-import androidx.lifecycle.MutableLiveData
+-import androidx.lifecycle.ViewModel
+-
+-class HomeViewModel : ViewModel() {
+-
+-    private val _text = MutableLiveData<String>().apply {
+-        value = "This is home Fragment"
+-    }
+-    val text: LiveData<String> = _text
+-}
+\ No newline at end of file
+Index: app/src/main/java/com/example/mvvmglobalnewsapp/ui/gallery/GalleryFragment.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/mvvmglobalnewsapp/ui/gallery/GalleryFragment.kt b/app/src/main/java/com/example/mvvmglobalnewsapp/ui/gallery/GalleryFragment.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/mvvmglobalnewsapp/ui/gallery/GalleryFragment.kt	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ /dev/null	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
+@@ -1,45 +0,0 @@
+-package com.example.mvvmglobalnewsapp.ui.gallery
+-
+-import android.os.Bundle
+-import android.view.LayoutInflater
+-import android.view.View
+-import android.view.ViewGroup
+-import android.widget.TextView
+-import androidx.fragment.app.Fragment
+-import androidx.lifecycle.Observer
+-import androidx.lifecycle.ViewModelProvider
+-import com.example.mvvmglobalnewsapp.R
+-import com.example.mvvmglobalnewsapp.databinding.FragmentGalleryBinding
+-
+-class GalleryFragment : Fragment() {
+-
+-    private lateinit var galleryViewModel: GalleryViewModel
+-    private var _binding: FragmentGalleryBinding? = null
+-
+-    // This property is only valid between onCreateView and
+-    // onDestroyView.
+-    private val binding get() = _binding!!
+-
+-    override fun onCreateView(
+-        inflater: LayoutInflater,
+-        container: ViewGroup?,
+-        savedInstanceState: Bundle?
+-    ): View? {
+-        galleryViewModel =
+-            ViewModelProvider(this).get(GalleryViewModel::class.java)
+-
+-        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
+-        val root: View = binding.root
+-
+-        val textView: TextView = binding.textGallery
+-        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
+-            textView.text = it
+-        })
+-        return root
+-    }
+-
+-    override fun onDestroyView() {
+-        super.onDestroyView()
+-        _binding = null
+-    }
+-}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_slideshow.xml
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_slideshow.xml b/app/src/main/res/layout/fragment_slideshow.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/fragment_slideshow.xml	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ /dev/null	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
+@@ -1,22 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context=".ui.slideshow.SlideshowFragment">
+-
+-    <TextView
+-        android:id="@+id/text_slideshow"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="8dp"
+-        android:layout_marginTop="8dp"
+-        android:layout_marginEnd="8dp"
+-        android:textAlignment="center"
+-        android:textSize="20sp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/mvvmglobalnewsapp/ui/home/HomeFragment.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/mvvmglobalnewsapp/ui/home/HomeFragment.kt b/app/src/main/java/com/example/mvvmglobalnewsapp/ui/home/HomeFragment.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/mvvmglobalnewsapp/ui/home/HomeFragment.kt	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ /dev/null	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
+@@ -1,45 +0,0 @@
+-package com.example.mvvmglobalnewsapp.ui.home
+-
+-import android.os.Bundle
+-import android.view.LayoutInflater
+-import android.view.View
+-import android.view.ViewGroup
+-import android.widget.TextView
+-import androidx.fragment.app.Fragment
+-import androidx.lifecycle.Observer
+-import androidx.lifecycle.ViewModelProvider
+-import com.example.mvvmglobalnewsapp.R
+-import com.example.mvvmglobalnewsapp.databinding.FragmentHomeBinding
+-
+-class HomeFragment : Fragment() {
+-
+-    private lateinit var homeViewModel: HomeViewModel
+-    private var _binding: FragmentHomeBinding? = null
+-
+-    // This property is only valid between onCreateView and
+-    // onDestroyView.
+-    private val binding get() = _binding!!
+-
+-    override fun onCreateView(
+-        inflater: LayoutInflater,
+-        container: ViewGroup?,
+-        savedInstanceState: Bundle?
+-    ): View? {
+-        homeViewModel =
+-            ViewModelProvider(this).get(HomeViewModel::class.java)
+-
+-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+-        val root: View = binding.root
+-
+-        val textView: TextView = binding.textHome
+-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+-            textView.text = it
+-        })
+-        return root
+-    }
+-
+-    override fun onDestroyView() {
+-        super.onDestroyView()
+-        _binding = null
+-    }
+-}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_gallery.xml
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_gallery.xml b/app/src/main/res/layout/fragment_gallery.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/fragment_gallery.xml	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ /dev/null	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
+@@ -1,22 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context=".ui.gallery.GalleryFragment">
+-
+-    <TextView
+-        android:id="@+id/text_gallery"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="8dp"
+-        android:layout_marginTop="8dp"
+-        android:layout_marginEnd="8dp"
+-        android:textAlignment="center"
+-        android:textSize="20sp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_home.xml
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_home.xml b/app/src/main/res/layout/fragment_home.xml
+deleted file mode 100644
+--- a/app/src/main/res/layout/fragment_home.xml	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ /dev/null	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
+@@ -1,22 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context=".ui.home.HomeFragment">
+-
+-    <TextView
+-        android:id="@+id/text_home"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="8dp"
+-        android:layout_marginTop="8dp"
+-        android:layout_marginEnd="8dp"
+-        android:textAlignment="center"
+-        android:textSize="20sp"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/mvvmglobalnewsapp/ui/slideshow/SlideshowViewModel.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/mvvmglobalnewsapp/ui/slideshow/SlideshowViewModel.kt b/app/src/main/java/com/example/mvvmglobalnewsapp/ui/slideshow/SlideshowViewModel.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/mvvmglobalnewsapp/ui/slideshow/SlideshowViewModel.kt	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ /dev/null	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
+@@ -1,13 +0,0 @@
+-package com.example.mvvmglobalnewsapp.ui.slideshow
+-
+-import androidx.lifecycle.LiveData
+-import androidx.lifecycle.MutableLiveData
+-import androidx.lifecycle.ViewModel
+-
+-class SlideshowViewModel : ViewModel() {
+-
+-    private val _text = MutableLiveData<String>().apply {
+-        value = "This is slideshow Fragment"
+-    }
+-    val text: LiveData<String> = _text
+-}
+\ No newline at end of file
+Index: app/src/main/java/com/example/mvvmglobalnewsapp/ui/slideshow/SlideshowFragment.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/mvvmglobalnewsapp/ui/slideshow/SlideshowFragment.kt b/app/src/main/java/com/example/mvvmglobalnewsapp/ui/slideshow/SlideshowFragment.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/mvvmglobalnewsapp/ui/slideshow/SlideshowFragment.kt	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ /dev/null	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
+@@ -1,45 +0,0 @@
+-package com.example.mvvmglobalnewsapp.ui.slideshow
+-
+-import android.os.Bundle
+-import android.view.LayoutInflater
+-import android.view.View
+-import android.view.ViewGroup
+-import android.widget.TextView
+-import androidx.fragment.app.Fragment
+-import androidx.lifecycle.Observer
+-import androidx.lifecycle.ViewModelProvider
+-import com.example.mvvmglobalnewsapp.R
+-import com.example.mvvmglobalnewsapp.databinding.FragmentSlideshowBinding
+-
+-class SlideshowFragment : Fragment() {
+-
+-    private lateinit var slideshowViewModel: SlideshowViewModel
+-    private var _binding: FragmentSlideshowBinding? = null
+-
+-    // This property is only valid between onCreateView and
+-    // onDestroyView.
+-    private val binding get() = _binding!!
+-
+-    override fun onCreateView(
+-        inflater: LayoutInflater,
+-        container: ViewGroup?,
+-        savedInstanceState: Bundle?
+-    ): View? {
+-        slideshowViewModel =
+-            ViewModelProvider(this).get(SlideshowViewModel::class.java)
+-
+-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
+-        val root: View = binding.root
+-
+-        val textView: TextView = binding.textSlideshow
+-        slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
+-            textView.text = it
+-        })
+-        return root
+-    }
+-
+-    override fun onDestroyView() {
+-        super.onDestroyView()
+-        _binding = null
+-    }
+-}
+\ No newline at end of file
+Index: app/src/main/res/drawable/baseline_balance_black_24dp.xml
+===================================================================
+diff --git a/app/src/main/res/drawable/baseline_balance_black_24dp.xml b/app/src/main/res/drawable/baseline_balance_black_24dp.xml
+deleted file mode 100644
+--- a/app/src/main/res/drawable/baseline_balance_black_24dp.xml	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ /dev/null	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+-<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:tint="#000000" android:viewportHeight="24.0" android:viewportWidth="24.0" android:width="24dp">
+-      
+-    <path android:fillColor="@android:color/white" android:pathData="M13,7.83c0.85,-0.3 1.53,-0.98 1.83,-1.83H18l-3,7c0,1.66 1.57,3 3.5,3s3.5,-1.34 3.5,-3l-3,-7h2V4h-6.17C14.42,2.83 13.31,2 12,2S9.58,2.83 9.17,4L3,4v2h2l-3,7c0,1.66 1.57,3 3.5,3S9,14.66 9,13L6,6h3.17c0.3,0.85 0.98,1.53 1.83,1.83V19H2v2h20v-2h-9V7.83zM20.37,13h-3.74l1.87,-4.36L20.37,13zM7.37,13H3.63L5.5,8.64L7.37,13zM12,6c-0.55,0 -1,-0.45 -1,-1c0,-0.55 0.45,-1 1,-1s1,0.45 1,1C13,5.55 12.55,6 12,6z"/>
+-    
+-</vector>
+Index: app/src/main/java/com/example/mvvmglobalnewsapp/ui/gallery/GalleryViewModel.kt
+===================================================================
+diff --git a/app/src/main/java/com/example/mvvmglobalnewsapp/ui/gallery/GalleryViewModel.kt b/app/src/main/java/com/example/mvvmglobalnewsapp/ui/gallery/GalleryViewModel.kt
+deleted file mode 100644
+--- a/app/src/main/java/com/example/mvvmglobalnewsapp/ui/gallery/GalleryViewModel.kt	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ /dev/null	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
+@@ -1,13 +0,0 @@
+-package com.example.mvvmglobalnewsapp.ui.gallery
+-
+-import androidx.lifecycle.LiveData
+-import androidx.lifecycle.MutableLiveData
+-import androidx.lifecycle.ViewModel
+-
+-class GalleryViewModel : ViewModel() {
+-
+-    private val _text = MutableLiveData<String>().apply {
+-        value = "This is gallery Fragment"
+-    }
+-    val text: LiveData<String> = _text
+-}
+\ No newline at end of file
+Index: app/src/main/res/navigation/mobile_navigation.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<navigation xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/mobile_navigation\"\n    app:startDestination=\"@+id/nav_home\">\n\n    <fragment\n        android:id=\"@+id/nav_home\"\n        android:name=\"com.example.mvvmglobalnewsapp.ui.home.HomeFragment\"\n        android:label=\"@string/menu_home\"\n        tools:layout=\"@layout/fragment_home\" />\n\n    <fragment\n        android:id=\"@+id/nav_gallery\"\n        android:name=\"com.example.mvvmglobalnewsapp.ui.gallery.GalleryFragment\"\n        android:label=\"@string/menu_gallery\"\n        tools:layout=\"@layout/fragment_gallery\" />\n\n    <fragment\n        android:id=\"@+id/nav_slideshow\"\n        android:name=\"com.example.mvvmglobalnewsapp.ui.slideshow.SlideshowFragment\"\n        android:label=\"@string/menu_slideshow\"\n        tools:layout=\"@layout/fragment_slideshow\" />\n</navigation>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/navigation/mobile_navigation.xml b/app/src/main/res/navigation/mobile_navigation.xml
+--- a/app/src/main/res/navigation/mobile_navigation.xml	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ b/app/src/main/res/navigation/mobile_navigation.xml	(date 1643034116462)
+@@ -3,23 +3,40 @@
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:id="@+id/mobile_navigation"
+-    app:startDestination="@+id/nav_home">
+-
++    app:startDestination="@id/nav_general">
++    <fragment
++        android:id="@+id/nav_business"
++        android:name="com.example.mvvmglobalnewsapp.ui.fragments.BusinessFragment"
++        android:label="fragment_business"
++        tools:layout="@layout/fragment_business" />
++    <fragment
++        android:id="@+id/nav_entertainment"
++        android:name="com.example.mvvmglobalnewsapp.ui.fragments.EntertainmentFragment"
++        android:label="fragment_entertainment"
++        tools:layout="@layout/fragment_entertainment" />
++    <fragment
++        android:id="@+id/nav_general"
++        android:name="com.example.mvvmglobalnewsapp.ui.fragments.GeneralFragment"
++        android:label="fragment_general"
++        tools:layout="@layout/fragment_general" />
+     <fragment
+-        android:id="@+id/nav_home"
+-        android:name="com.example.mvvmglobalnewsapp.ui.home.HomeFragment"
+-        android:label="@string/menu_home"
+-        tools:layout="@layout/fragment_home" />
+-
++        android:id="@+id/nav_health"
++        android:name="com.example.mvvmglobalnewsapp.ui.fragments.HealthFragment"
++        android:label="fragment_health"
++        tools:layout="@layout/fragment_health" />
+     <fragment
+-        android:id="@+id/nav_gallery"
+-        android:name="com.example.mvvmglobalnewsapp.ui.gallery.GalleryFragment"
+-        android:label="@string/menu_gallery"
+-        tools:layout="@layout/fragment_gallery" />
+-
++        android:id="@+id/nav_science"
++        android:name="com.example.mvvmglobalnewsapp.ui.fragments.ScienceFragment"
++        android:label="fragment_science"
++        tools:layout="@layout/fragment_science" />
+     <fragment
+-        android:id="@+id/nav_slideshow"
+-        android:name="com.example.mvvmglobalnewsapp.ui.slideshow.SlideshowFragment"
+-        android:label="@string/menu_slideshow"
+-        tools:layout="@layout/fragment_slideshow" />
++        android:id="@+id/nav_sport"
++        android:name="com.example.mvvmglobalnewsapp.ui.fragments.SportsFragment"
++        android:label="fragment_sports"
++        tools:layout="@layout/fragment_sports" />
++    <fragment
++        android:id="@+id/nav_technology"
++        android:name="com.example.mvvmglobalnewsapp.ui.fragments.TechnologyFragment"
++        android:label="fragment_technology"
++        tools:layout="@layout/fragment_technology" />
+ </navigation>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n    <string name=\"app_name\">MvvmGlobalNewsApp</string>\n    <string name=\"navigation_drawer_open\">Open navigation drawer</string>\n    <string name=\"navigation_drawer_close\">Close navigation drawer</string>\n    <string name=\"nav_header_title\">Android Studio</string>\n    <string name=\"nav_header_subtitle\">android.studio@android.com</string>\n    <string name=\"nav_header_desc\">Navigation header</string>\n    <string name=\"action_settings\">Settings</string>\n\n    <string name=\"menu_home\">Home</string>\n    <string name=\"menu_gallery\">Gallery</string>\n    <string name=\"menu_slideshow\">Slideshow</string>\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ b/app/src/main/res/values/strings.xml	(date 1643029768636)
+@@ -10,4 +10,6 @@
+     <string name="menu_home">Home</string>
+     <string name="menu_gallery">Gallery</string>
+     <string name="menu_slideshow">Slideshow</string>
++    <!-- TODO: Remove or change this placeholder text -->
++    <string name="hello_blank_fragment">Hello blank fragment</string>
+ </resources>
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    id 'com.android.application'\n    id 'kotlin-android'\n}\n\nandroid {\n    compileSdk 32\n\n    defaultConfig {\n        applicationId \"com.example.mvvmglobalnewsapp\"\n        minSdk 21\n        targetSdk 32\n        versionCode 1\n        versionName \"1.0\"\n\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n    }\n\n    buildTypes {\n        release {\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n    compileOptions {\n        sourceCompatibility JavaVersion.VERSION_1_8\n        targetCompatibility JavaVersion.VERSION_1_8\n    }\n    kotlinOptions {\n        jvmTarget = '1.8'\n    }\n    buildFeatures {\n        viewBinding true\n    }\n}\n\ndependencies {\n\n    implementation 'androidx.core:core-ktx:1.7.0'\n    implementation 'androidx.appcompat:appcompat:1.4.1'\n    implementation 'com.google.android.material:material:1.5.0'\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'\n    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'\n    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'\n    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'\n    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'\n    testImplementation 'junit:junit:4.+'\n    androidTestImplementation 'androidx.test.ext:junit:1.1.3'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ b/app/build.gradle	(date 1643034202311)
+@@ -1,6 +1,7 @@
+ plugins {
+     id 'com.android.application'
+     id 'kotlin-android'
++    id 'kotlin-kapt'
+ }
+ 
+ android {
+@@ -30,7 +31,7 @@
+         jvmTarget = '1.8'
+     }
+     buildFeatures {
+-        viewBinding true
++        dataBinding true
+     }
+ }
+ 
+@@ -44,6 +45,7 @@
+     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
++    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+     testImplementation 'junit:junit:4.+'
+     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"DesignSurface\">\n    <option name=\"filePathToZoomLevelMap\">\n      <map>\n        <entry key=\"app/src/main/res/drawable-v24/ic_launcher_foreground.xml\" value=\"0.3175925925925926\" />\n        <entry key=\"app/src/main/res/drawable/ic_launcher_background.xml\" value=\"0.3175925925925926\" />\n        <entry key=\"app/src/main/res/drawable/ic_menu_camera.xml\" value=\"0.3175925925925926\" />\n        <entry key=\"app/src/main/res/layout/activity_main.xml\" value=\"0.26811594202898553\" />\n        <entry key=\"app/src/main/res/layout/adsf.xml\" value=\"0.1\" />\n      </map>\n    </option>\n  </component>\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\n  </component>\n  <component name=\"ProjectType\">\n    <option name=\"id\" value=\"Android\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ b/.idea/misc.xml	(date 1643034809447)
+@@ -4,10 +4,28 @@
+     <option name="filePathToZoomLevelMap">
+       <map>
+         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3175925925925926" />
++        <entry key="app/src/main/res/drawable/baseline_balance_black_24dp.xml" value="0.37447916666666664" />
++        <entry key="app/src/main/res/drawable/ic_entertainment_item_24.xml" value="0.37395833333333334" />
++        <entry key="app/src/main/res/drawable/ic_general_item_24.xml" value="0.37447916666666664" />
++        <entry key="app/src/main/res/drawable/ic_health_item.xml" value="0.37395833333333334" />
+         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3175925925925926" />
+         <entry key="app/src/main/res/drawable/ic_menu_camera.xml" value="0.3175925925925926" />
++        <entry key="app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.3101851851851852" />
+         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26811594202898553" />
+         <entry key="app/src/main/res/layout/adsf.xml" value="0.1" />
++        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.35833333333333334" />
++        <entry key="app/src/main/res/layout/content_main.xml" value="0.3578125" />
++        <entry key="app/src/main/res/layout/fragment_business.xml" value="0.34375" />
++        <entry key="app/src/main/res/layout/fragment_entertainment.xml" value="0.3578125" />
++        <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.3578125" />
++        <entry key="app/src/main/res/layout/fragment_health.xml" value="0.3578125" />
++        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3578125" />
++        <entry key="app/src/main/res/layout/fragment_science.xml" value="0.3578125" />
++        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.3578125" />
++        <entry key="app/src/main/res/layout/fragment_sports.xml" value="0.3578125" />
++        <entry key="app/src/main/res/layout/fragment_technology.xml" value="0.3578125" />
++        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.3578125" />
++        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.3578125" />
+       </map>
+     </option>
+   </component>
+Index: app/src/main/java/com/example/mvvmglobalnewsapp/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.mvvmglobalnewsapp\n\nimport android.os.Bundle\nimport android.view.Menu\nimport com.google.android.material.snackbar.Snackbar\nimport com.google.android.material.navigation.NavigationView\nimport androidx.navigation.findNavController\nimport androidx.navigation.ui.AppBarConfiguration\nimport androidx.navigation.ui.navigateUp\nimport androidx.navigation.ui.setupActionBarWithNavController\nimport androidx.navigation.ui.setupWithNavController\nimport androidx.drawerlayout.widget.DrawerLayout\nimport androidx.appcompat.app.AppCompatActivity\nimport com.example.mvvmglobalnewsapp.databinding.ActivityMainBinding\n\nclass MainActivity : AppCompatActivity() {\n\n    private lateinit var appBarConfiguration: AppBarConfiguration\n    private lateinit var binding: ActivityMainBinding\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n\n        binding = ActivityMainBinding.inflate(layoutInflater)\n        setContentView(binding.root)\n\n        setSupportActionBar(binding.appBarMain.toolbar)\n\n        binding.appBarMain.fab.setOnClickListener { view ->\n            Snackbar.make(view, \"Replace with your own action\", Snackbar.LENGTH_LONG)\n                .setAction(\"Action\", null).show()\n        }\n        val drawerLayout: DrawerLayout = binding.drawerLayout\n        val navView: NavigationView = binding.navView\n        val navController = findNavController(R.id.nav_host_fragment_content_main)\n        // Passing each menu ID as a set of Ids because each\n        // menu should be considered as top level destinations.\n        appBarConfiguration = AppBarConfiguration(\n            setOf(\n                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow\n            ), drawerLayout\n        )\n        setupActionBarWithNavController(navController, appBarConfiguration)\n        navView.setupWithNavController(navController)\n    }\n\n    override fun onCreateOptionsMenu(menu: Menu): Boolean {\n        // Inflate the menu; this adds items to the action bar if it is present.\n        menuInflater.inflate(R.menu.main, menu)\n        return true\n    }\n\n    override fun onSupportNavigateUp(): Boolean {\n        val navController = findNavController(R.id.nav_host_fragment_content_main)\n        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/mvvmglobalnewsapp/MainActivity.kt b/app/src/main/java/com/example/mvvmglobalnewsapp/MainActivity.kt
+--- a/app/src/main/java/com/example/mvvmglobalnewsapp/MainActivity.kt	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ b/app/src/main/java/com/example/mvvmglobalnewsapp/MainActivity.kt	(date 1643034775180)
+@@ -11,6 +11,7 @@
+ import androidx.navigation.ui.setupWithNavController
+ import androidx.drawerlayout.widget.DrawerLayout
+ import androidx.appcompat.app.AppCompatActivity
++import androidx.databinding.DataBindingUtil
+ import com.example.mvvmglobalnewsapp.databinding.ActivityMainBinding
+ 
+ class MainActivity : AppCompatActivity() {
+@@ -26,10 +27,7 @@
+ 
+         setSupportActionBar(binding.appBarMain.toolbar)
+ 
+-        binding.appBarMain.fab.setOnClickListener { view ->
+-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+-                .setAction("Action", null).show()
+-        }
++
+         val drawerLayout: DrawerLayout = binding.drawerLayout
+         val navView: NavigationView = binding.navView
+         val navController = findNavController(R.id.nav_host_fragment_content_main)
+@@ -37,7 +35,7 @@
+         // menu should be considered as top level destinations.
+         appBarConfiguration = AppBarConfiguration(
+             setOf(
+-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
++                R.id.nav_general, R.id.nav_business, R.id.nav_entertainment, R.id.nav_health, R.id.nav_science, R.id.nav_sport, R.id.nav_technology
+             ), drawerLayout
+         )
+         setupActionBarWithNavController(navController, appBarConfiguration)
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1643031092457)
++++ b/.idea/vcs.xml	(date 1643031092457)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"GradleSettings\">\n    <option name=\"linkedExternalProjectsSettings\">\n      <GradleProjectSettings>\n        <option name=\"testRunner\" value=\"GRADLE\" />\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\n      </GradleProjectSettings>\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ b/.idea/gradle.xml	(date 1643031092453)
+@@ -1,11 +1,18 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+         <option name="testRunner" value="GRADLE" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="modules">
++          <set>
++            <option value="$PROJECT_DIR$" />
++            <option value="$PROJECT_DIR$/app" />
++          </set>
++        </option>
+         <option name="resolveModulePerSourceSet" value="false" />
+       </GradleProjectSettings>
+     </option>
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.drawerlayout.widget.DrawerLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:id=\"@+id/drawer_layout\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:fitsSystemWindows=\"true\"\n    tools:openDrawer=\"start\">\n\n    <include\n        android:id=\"@+id/app_bar_main\"\n        layout=\"@layout/app_bar_main\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\" />\n\n    <com.google.android.material.navigation.NavigationView\n        android:id=\"@+id/nav_view\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"match_parent\"\n        android:layout_gravity=\"start\"\n        android:fitsSystemWindows=\"true\"\n        app:headerLayout=\"@layout/nav_header_main\"\n        app:menu=\"@menu/activity_main_drawer\" />\n</androidx.drawerlayout.widget.DrawerLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1643033409770)
+@@ -1,25 +1,28 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<layout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:id="@+id/drawer_layout"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:fitsSystemWindows="true"
+-    tools:openDrawer="start">
++    xmlns:tools="http://schemas.android.com/tools">
++
++    <androidx.drawerlayout.widget.DrawerLayout
++        android:id="@+id/drawer_layout"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:fitsSystemWindows="true"
++        tools:openDrawer="start">
+ 
+-    <include
+-        android:id="@+id/app_bar_main"
+-        layout="@layout/app_bar_main"
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent" />
++        <include
++            android:id="@+id/app_bar_main"
++            layout="@layout/app_bar_main"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent" />
+ 
+-    <com.google.android.material.navigation.NavigationView
+-        android:id="@+id/nav_view"
+-        android:layout_width="wrap_content"
+-        android:layout_height="match_parent"
+-        android:layout_gravity="start"
+-        android:fitsSystemWindows="true"
+-        app:headerLayout="@layout/nav_header_main"
+-        app:menu="@menu/activity_main_drawer" />
+-</androidx.drawerlayout.widget.DrawerLayout>
+\ No newline at end of file
++        <com.google.android.material.navigation.NavigationView
++            android:id="@+id/nav_view"
++            android:layout_width="wrap_content"
++            android:layout_height="match_parent"
++            android:layout_gravity="start"
++            android:fitsSystemWindows="true"
++            app:headerLayout="@layout/nav_header_main"
++            app:menu="@menu/activity_main_drawer" />
++    </androidx.drawerlayout.widget.DrawerLayout>
++</layout>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+new file mode 100644
+--- /dev/null	(date 1643031092441)
++++ b/.idea/compiler.xml	(date 1643031092441)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <bytecodeTargetLevel target="11" />
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/res/layout/nav_header_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"@dimen/nav_header_height\"\n    android:background=\"@drawable/side_nav_bar\"\n    android:gravity=\"bottom\"\n    android:orientation=\"vertical\"\n    android:paddingLeft=\"@dimen/activity_horizontal_margin\"\n    android:paddingTop=\"@dimen/activity_vertical_margin\"\n    android:paddingRight=\"@dimen/activity_horizontal_margin\"\n    android:paddingBottom=\"@dimen/activity_vertical_margin\"\n    android:theme=\"@style/ThemeOverlay.AppCompat.Dark\">\n\n    <ImageView\n        android:id=\"@+id/imageView\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:contentDescription=\"@string/nav_header_desc\"\n        android:paddingTop=\"@dimen/nav_header_vertical_spacing\"\n        app:srcCompat=\"@mipmap/ic_launcher_round\" />\n\n    <TextView\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:paddingTop=\"@dimen/nav_header_vertical_spacing\"\n        android:text=\"@string/nav_header_title\"\n        android:textAppearance=\"@style/TextAppearance.AppCompat.Body1\" />\n\n    <TextView\n        android:id=\"@+id/textView\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"@string/nav_header_subtitle\" />\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/nav_header_main.xml b/app/src/main/res/layout/nav_header_main.xml
+--- a/app/src/main/res/layout/nav_header_main.xml	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ b/app/src/main/res/layout/nav_header_main.xml	(date 1643033409754)
+@@ -1,35 +1,39 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    android:layout_width="match_parent"
+-    android:layout_height="@dimen/nav_header_height"
+-    android:background="@drawable/side_nav_bar"
+-    android:gravity="bottom"
+-    android:orientation="vertical"
+-    android:paddingLeft="@dimen/activity_horizontal_margin"
+-    android:paddingTop="@dimen/activity_vertical_margin"
+-    android:paddingRight="@dimen/activity_horizontal_margin"
+-    android:paddingBottom="@dimen/activity_vertical_margin"
+-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
++<layout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto">
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="@dimen/nav_header_height"
++        android:background="@drawable/side_nav_bar"
++        android:gravity="bottom"
++        android:orientation="vertical"
++        android:paddingLeft="@dimen/activity_horizontal_margin"
++        android:paddingTop="@dimen/activity_vertical_margin"
++        android:paddingRight="@dimen/activity_horizontal_margin"
++        android:paddingBottom="@dimen/activity_vertical_margin"
++        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+ 
+-    <ImageView
+-        android:id="@+id/imageView"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:contentDescription="@string/nav_header_desc"
+-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+-        app:srcCompat="@mipmap/ic_launcher_round" />
++        <ImageView
++            android:id="@+id/iv_userProfile"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:contentDescription="@string/nav_header_desc"
++            android:paddingTop="@dimen/nav_header_vertical_spacing"
++            app:srcCompat="@mipmap/ic_launcher_round" />
+ 
+-    <TextView
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+-        android:text="@string/nav_header_title"
+-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
++        <TextView
++            android:id="@+id/tv_userName"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:paddingTop="@dimen/nav_header_vertical_spacing"
++            android:text="@string/nav_header_title"
++            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+ 
+-    <TextView
+-        android:id="@+id/textView"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="@string/nav_header_subtitle" />
+-</LinearLayout>
+\ No newline at end of file
++        <TextView
++            android:id="@+id/tv_userMail"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="@string/nav_header_subtitle" />
++    </LinearLayout>
++</layout>
+\ No newline at end of file
+Index: app/src/main/res/menu/activity_main_drawer.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<menu xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    tools:showIn=\"navigation_view\">\n\n    <group android:checkableBehavior=\"single\">\n        <item\n            android:id=\"@+id/nav_home\"\n            android:icon=\"@drawable/ic_menu_camera\"\n            android:title=\"@string/menu_home\" />\n        <item\n            android:id=\"@+id/nav_gallery\"\n            android:icon=\"@drawable/ic_menu_gallery\"\n            android:title=\"@string/menu_gallery\" />\n        <item\n            android:id=\"@+id/nav_slideshow\"\n            android:icon=\"@drawable/ic_menu_slideshow\"\n            android:title=\"@string/menu_slideshow\" />\n    </group>\n</menu>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/menu/activity_main_drawer.xml b/app/src/main/res/menu/activity_main_drawer.xml
+--- a/app/src/main/res/menu/activity_main_drawer.xml	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ b/app/src/main/res/menu/activity_main_drawer.xml	(date 1643034166188)
+@@ -3,18 +3,39 @@
+     xmlns:tools="http://schemas.android.com/tools"
+     tools:showIn="navigation_view">
+ 
+-    <group android:checkableBehavior="single">
++    <group
++        android:checkableBehavior="single"
++        android:menuCategory="secondary">
++
++        <item
++            android:id="@+id/nav_general"
++            android:icon="@drawable/ic_general_item_24"
++            android:title="General" />
++        <item
++            android:id="@+id/nav_business"
++            android:icon="@drawable/ic_business_item_24"
++            android:title="Business" />
++        <item
++            android:id="@+id/nav_sport"
++            android:icon="@drawable/ic_sports_item_24"
++            android:title="Sport" />
+         <item
+-            android:id="@+id/nav_home"
+-            android:icon="@drawable/ic_menu_camera"
+-            android:title="@string/menu_home" />
++            android:id="@+id/nav_health"
++            android:icon="@drawable/ic_health_item"
++            android:title="Health" />
+         <item
+-            android:id="@+id/nav_gallery"
+-            android:icon="@drawable/ic_menu_gallery"
+-            android:title="@string/menu_gallery" />
++            android:id="@+id/nav_entertainment"
++            android:icon="@drawable/ic_entertainment_item_24"
++            android:title="Entertainment" />
+         <item
+-            android:id="@+id/nav_slideshow"
+-            android:icon="@drawable/ic_menu_slideshow"
+-            android:title="@string/menu_slideshow" />
++            android:title="Technology"
++            android:icon="@drawable/ic_technology_item_24"
++            android:id="@+id/nav_technology"/>
++        <item
++            android:title="Science"
++            android:icon="@drawable/ic_science_item_24"
++            android:id="@+id/nav_science"/>
++
++
+     </group>
+ </menu>
+\ No newline at end of file
+Index: app/src/main/res/layout/content_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    app:layout_behavior=\"@string/appbar_scrolling_view_behavior\"\n    tools:showIn=\"@layout/app_bar_main\">\n\n    <fragment\n        android:id=\"@+id/nav_host_fragment_content_main\"\n        android:name=\"androidx.navigation.fragment.NavHostFragment\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        app:defaultNavHost=\"true\"\n        app:layout_constraintLeft_toLeftOf=\"parent\"\n        app:layout_constraintRight_toRightOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:navGraph=\"@navigation/mobile_navigation\" />\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/content_main.xml b/app/src/main/res/layout/content_main.xml
+--- a/app/src/main/res/layout/content_main.xml	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ b/app/src/main/res/layout/content_main.xml	(date 1643033409758)
+@@ -1,20 +1,23 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<layout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+-    tools:showIn="@layout/app_bar_main">
++    xmlns:tools="http://schemas.android.com/tools">
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        app:layout_behavior="@string/appbar_scrolling_view_behavior"
++        tools:showIn="@layout/app_bar_main">
+ 
+-    <fragment
+-        android:id="@+id/nav_host_fragment_content_main"
+-        android:name="androidx.navigation.fragment.NavHostFragment"
+-        android:layout_width="match_parent"
+-        android:layout_height="match_parent"
+-        app:defaultNavHost="true"
+-        app:layout_constraintLeft_toLeftOf="parent"
+-        app:layout_constraintRight_toRightOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:navGraph="@navigation/mobile_navigation" />
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
++        <fragment
++            android:id="@+id/nav_host_fragment_content_main"
++            android:name="androidx.navigation.fragment.NavHostFragment"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            app:defaultNavHost="true"
++            app:layout_constraintLeft_toLeftOf="parent"
++            app:layout_constraintRight_toRightOf="parent"
++            app:layout_constraintTop_toTopOf="parent"
++            app:navGraph="@navigation/mobile_navigation" />
++    </androidx.constraintlayout.widget.ConstraintLayout>
++</layout>
+\ No newline at end of file
+Index: app/src/main/res/layout/app_bar_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".MainActivity\">\n\n    <com.google.android.material.appbar.AppBarLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:theme=\"@style/Theme.MvvmGlobalNewsApp.AppBarOverlay\">\n\n        <androidx.appcompat.widget.Toolbar\n            android:id=\"@+id/toolbar\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"?attr/actionBarSize\"\n            android:background=\"?attr/colorPrimary\"\n            app:popupTheme=\"@style/Theme.MvvmGlobalNewsApp.PopupOverlay\" />\n\n    </com.google.android.material.appbar.AppBarLayout>\n\n    <include layout=\"@layout/content_main\" />\n\n    <com.google.android.material.floatingactionbutton.FloatingActionButton\n        android:id=\"@+id/fab\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_gravity=\"bottom|end\"\n        android:layout_marginEnd=\"@dimen/fab_margin\"\n        android:layout_marginBottom=\"16dp\"\n        app:srcCompat=\"@android:drawable/ic_dialog_email\" />\n\n</androidx.coordinatorlayout.widget.CoordinatorLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/app_bar_main.xml b/app/src/main/res/layout/app_bar_main.xml
+--- a/app/src/main/res/layout/app_bar_main.xml	(revision 33d83d5ec245d7cf1697298d1c12e3db3a8794e6)
++++ b/app/src/main/res/layout/app_bar_main.xml	(date 1643033409778)
+@@ -1,34 +1,30 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<layout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context=".MainActivity">
++    xmlns:tools="http://schemas.android.com/tools">
++
++    <androidx.coordinatorlayout.widget.CoordinatorLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        tools:context=".MainActivity">
+ 
+-    <com.google.android.material.appbar.AppBarLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:theme="@style/Theme.MvvmGlobalNewsApp.AppBarOverlay">
++        <com.google.android.material.appbar.AppBarLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:theme="@style/Theme.MvvmGlobalNewsApp.AppBarOverlay">
+ 
+-        <androidx.appcompat.widget.Toolbar
+-            android:id="@+id/toolbar"
+-            android:layout_width="match_parent"
+-            android:layout_height="?attr/actionBarSize"
+-            android:background="?attr/colorPrimary"
+-            app:popupTheme="@style/Theme.MvvmGlobalNewsApp.PopupOverlay" />
++            <androidx.appcompat.widget.Toolbar
++                android:id="@+id/toolbar"
++                android:layout_width="match_parent"
++                android:layout_height="?attr/actionBarSize"
++                android:background="?attr/colorPrimary"
++                app:popupTheme="@style/Theme.MvvmGlobalNewsApp.PopupOverlay" />
+ 
+-    </com.google.android.material.appbar.AppBarLayout>
++        </com.google.android.material.appbar.AppBarLayout>
+ 
+-    <include layout="@layout/content_main" />
++        <include
++            android:id="@+id/content_main"
++            layout="@layout/content_main" />
+ 
+-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+-        android:id="@+id/fab"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_gravity="bottom|end"
+-        android:layout_marginEnd="@dimen/fab_margin"
+-        android:layout_marginBottom="16dp"
+-        app:srcCompat="@android:drawable/ic_dialog_email" />
+-
+-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+\ No newline at end of file
++    </androidx.coordinatorlayout.widget.CoordinatorLayout>
++</layout>
+\ No newline at end of file

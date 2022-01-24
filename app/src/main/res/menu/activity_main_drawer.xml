@@ -3,18 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:checkableBehavior="single"
+        android:menuCategory="secondary">
+
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:id="@+id/nav_general"
+            android:icon="@drawable/ic_general_item_24"
+            android:title="General" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_business"
+            android:icon="@drawable/ic_business_item_24"
+            android:title="Business" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_sport"
+            android:icon="@drawable/ic_sports_item_24"
+            android:title="Sport" />
+        <item
+            android:id="@+id/nav_health"
+            android:icon="@drawable/ic_health_item"
+            android:title="Health" />
+        <item
+            android:id="@+id/nav_entertainment"
+            android:icon="@drawable/ic_entertainment_item_24"
+            android:title="Entertainment" />
+        <item
+            android:title="Technology"
+            android:icon="@drawable/ic_technology_item_24"
+            android:id="@+id/nav_technology"/>
+        <item
+            android:title="Science"
+            android:icon="@drawable/ic_science_item_24"
+            android:id="@+id/nav_science"/>
+
+
     </group>
 </menu>
