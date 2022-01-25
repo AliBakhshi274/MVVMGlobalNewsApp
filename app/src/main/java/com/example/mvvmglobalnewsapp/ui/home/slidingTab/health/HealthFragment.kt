@@ -1,4 +1,4 @@
-package com.example.mvvmglobalnewsapp.ui.fragments
+package com.example.mvvmglobalnewsapp.ui.home.slidingTab.health
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.mvvmglobalnewsapp.R
 
-class SportsFragment : Fragment() {
-
+class HealthFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,7 +18,7 @@ class SportsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sports, container, false)
+        return inflater.inflate(R.layout.fragment_health, container, false)
     }
 
 }

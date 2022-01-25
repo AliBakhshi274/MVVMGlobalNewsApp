@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3175925925925926" />
         <entry key="app/src/main/res/drawable/baseline_balance_black_24dp.xml" value="0.37447916666666664" />
+        <entry key="app/src/main/res/drawable/baseline_navigation_black_24dp.xml" value="0.37447916666666664" />
         <entry key="app/src/main/res/drawable/ic_entertainment_item_24.xml" value="0.37395833333333334" />
         <entry key="app/src/main/res/drawable/ic_general_item_24.xml" value="0.37447916666666664" />
         <entry key="app/src/main/res/drawable/ic_health_item.xml" value="0.37395833333333334" />
@@ -15,17 +17,23 @@
         <entry key="app/src/main/res/layout/adsf.xml" value="0.1" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.3578125" />
+        <entry key="app/src/main/res/layout/fragment_about.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/fragment_business.xml" value="0.34375" />
         <entry key="app/src/main/res/layout/fragment_entertainment.xml" value="0.3578125" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.3578125" />
+        <entry key="app/src/main/res/layout/fragment_general.xml" value="0.19701086956521738" />
         <entry key="app/src/main/res/layout/fragment_health.xml" value="0.3578125" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3578125" />
         <entry key="app/src/main/res/layout/fragment_science.xml" value="0.3578125" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.3578125" />
         <entry key="app/src/main/res/layout/fragment_sports.xml" value="0.3578125" />
         <entry key="app/src/main/res/layout/fragment_technology.xml" value="0.3578125" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.3578125" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.3578125" />
+        <entry key="app/src/main/res/menu/main.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/menu/menu.xml" value="0.35833333333333334" />
       </map>
     </option>
   </component>
@@ -34,5 +42,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.35833333333333334" />
+      </ProjectState>
+    </option>
   </component>
 </project>

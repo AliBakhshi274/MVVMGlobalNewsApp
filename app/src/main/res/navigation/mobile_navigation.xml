@@ -3,40 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_general">
+    app:startDestination="@id/nav_home">
     <fragment
-        android:id="@+id/nav_business"
-        android:name="com.example.mvvmglobalnewsapp.ui.fragments.BusinessFragment"
-        android:label="fragment_business"
-        tools:layout="@layout/fragment_business" />
+        android:id="@+id/nav_about"
+        android:name="com.example.mvvmglobalnewsapp.ui.about.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
     <fragment
-        android:id="@+id/nav_entertainment"
-        android:name="com.example.mvvmglobalnewsapp.ui.fragments.EntertainmentFragment"
-        android:label="fragment_entertainment"
-        tools:layout="@layout/fragment_entertainment" />
+        android:id="@+id/nav_settings"
+        android:name="com.example.mvvmglobalnewsapp.ui.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
     <fragment
-        android:id="@+id/nav_general"
-        android:name="com.example.mvvmglobalnewsapp.ui.fragments.GeneralFragment"
-        android:label="fragment_general"
-        tools:layout="@layout/fragment_general" />
+        android:id="@+id/nav_search"
+        android:name="com.example.mvvmglobalnewsapp.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
     <fragment
-        android:id="@+id/nav_health"
-        android:name="com.example.mvvmglobalnewsapp.ui.fragments.HealthFragment"
-        android:label="fragment_health"
-        tools:layout="@layout/fragment_health" />
-    <fragment
-        android:id="@+id/nav_science"
-        android:name="com.example.mvvmglobalnewsapp.ui.fragments.ScienceFragment"
-        android:label="fragment_science"
-        tools:layout="@layout/fragment_science" />
-    <fragment
-        android:id="@+id/nav_sport"
-        android:name="com.example.mvvmglobalnewsapp.ui.fragments.SportsFragment"
-        android:label="fragment_sports"
-        tools:layout="@layout/fragment_sports" />
-    <fragment
-        android:id="@+id/nav_technology"
-        android:name="com.example.mvvmglobalnewsapp.ui.fragments.TechnologyFragment"
-        android:label="fragment_technology"
-        tools:layout="@layout/fragment_technology" />
+        android:id="@+id/nav_home"
+        android:name="com.example.mvvmglobalnewsapp.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>

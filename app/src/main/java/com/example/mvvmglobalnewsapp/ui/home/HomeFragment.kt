@@ -4,42 +4,86 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.example.mvvmglobalnewsapp.R
-import com.example.mvvmglobalnewsapp.databinding.FragmentHomeBinding
+import com.example.mvvmglobalnewsapp.ui.MainActivity
+import com.example.mvvmglobalnewsapp.ui.home.slidingTab.entertainment.EntertainmentFragment
+import com.example.mvvmglobalnewsapp.ui.home.slidingTab.general.GeneralFragment
+import com.example.mvvmglobalnewsapp.ui.home.slidingTab.health.HealthFragment
+import com.example.mvvmglobalnewsapp.ui.home.slidingTab.science.ScienceFragment
+import com.example.mvvmglobalnewsapp.ui.home.slidingTab.sports.SportsFragment
+import com.google.android.material.tabs.TabLayout
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
+    var tabLayout: TabLayout? = null
+    var viewPager: ViewPager? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private var tabIcons = intArrayOf(
+        R.drawable.ic_general_item_24,
+        R.drawable.ic_sports_item_24,
+        R.drawable.ic_health_item,
+        R.drawable.ic_entertainment_item_24,
+        R.drawable.ic_science_item_24,
+        R.drawable.ic_business_item_24,
+        R.drawable.ic_technology_item_24
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val view = inflater.inflate(R.layout.fragment_home, null)
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        tabLayout = view.findViewById(R.id.tabLayout)
+        viewPager = view.findViewById(R.id.viewpager)
+
+        viewPager?.adapter = SectionPagerAdapter(requireContext() ,childFragmentManager)
+
+        tabLayout?.post(Runnable {
+            kotlin.run {
+                tabLayout?.setupWithViewPager(viewPager)
+                setupIcons()
+            }
         })
-        return root
+
+        viewPager?.setOffscreenPageLimit(50)
+
+        return view
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setupIcons() {
+        tabLayout?.getTabAt(0)?.setIcon(tabIcons[0])
+        tabLayout?.getTabAt(1)?.setIcon(tabIcons.get(1))
+        tabLayout?.getTabAt(2)?.setIcon(tabIcons.get(2))
+        tabLayout?.getTabAt(3)?.setIcon(tabIcons.get(3))
+        tabLayout?.getTabAt(4)?.setIcon(tabIcons.get(4))
+        tabLayout?.getTabAt(5)?.setIcon(tabIcons.get(5))
+        tabLayout?.getTabAt(6)?.setIcon(tabIcons.get(6))
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
