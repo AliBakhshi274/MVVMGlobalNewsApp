@@ -5,16 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.example.mvvmglobalnewsapp.R
-import com.example.mvvmglobalnewsapp.ui.MainActivity
-import com.example.mvvmglobalnewsapp.ui.home.slidingTab.entertainment.EntertainmentFragment
-import com.example.mvvmglobalnewsapp.ui.home.slidingTab.general.GeneralFragment
-import com.example.mvvmglobalnewsapp.ui.home.slidingTab.health.HealthFragment
-import com.example.mvvmglobalnewsapp.ui.home.slidingTab.science.ScienceFragment
-import com.example.mvvmglobalnewsapp.ui.home.slidingTab.sports.SportsFragment
 import com.google.android.material.tabs.TabLayout
 
 class HomeFragment : Fragment() {
@@ -43,7 +35,7 @@ class HomeFragment : Fragment() {
         tabLayout = view.findViewById(R.id.tabLayout)
         viewPager = view.findViewById(R.id.viewpager)
 
-        viewPager?.adapter = SectionPagerAdapter(requireContext() ,childFragmentManager)
+        viewPager?.adapter = FragmentPagerAdapter(requireContext() ,childFragmentManager)
 
         tabLayout?.post(Runnable {
             kotlin.run {

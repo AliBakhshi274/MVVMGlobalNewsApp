@@ -14,7 +14,7 @@ import com.example.mvvmglobalnewsapp.ui.home.slidingTab.sports.SportsFragment
 import com.example.mvvmglobalnewsapp.ui.home.slidingTab.technology.TechnologyFragment
 import com.example.mvvmglobalnewsapp.utils.Constants
 
-class SectionPagerAdapter(private val context: Context, fm: FragmentManager) :
+class FragmentPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
 
     private val constants: Constants = Constants()
@@ -38,7 +38,8 @@ class SectionPagerAdapter(private val context: Context, fm: FragmentManager) :
             constants.ENTERTAINMENT -> return EntertainmentFragment()
             constants.SCIENCE -> return ScienceFragment()
             constants.BUSINESS -> return BusinessFragment()
-            else -> return TechnologyFragment()
+            constants.TECHNOLOGY -> return TechnologyFragment()
+            else -> return GeneralFragment()
         }
     }
 

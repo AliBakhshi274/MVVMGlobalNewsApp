@@ -2,52 +2,92 @@ package com.example.mvvmglobalnewsapp.ui
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager.widget.ViewPager
 import com.example.mvvmglobalnewsapp.R
-import com.example.mvvmglobalnewsapp.databinding.ActivityMainBinding
-import com.example.mvvmglobalnewsapp.ui.home.SectionPagerAdapter
+import com.example.mvvmglobalnewsapp.ui.home.FragmentPagerAdapter
 import com.example.mvvmglobalnewsapp.utils.Constants
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 
-class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private var constants = Constants()
+    private lateinit var viewPager: ViewPager
+    private lateinit var drawerLayout: DrawerLayout
+
+    val constants: Constants = Constants()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-        setSupportActionBar(binding.appBarMain.materialToolbar)
+        drawerLayout = findViewById(R.id.drawer_layout)
+        val toggle =
+            ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                toolbar,
+                R.string.open_navigation_drawer,
+                R.string.close_navigation_drawer
+            )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
 
-        // handle Drawerlayout
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_search,
-                R.id.nav_home,
-                R.id.nav_about,
-                R.id.nav_settings,
-            ), drawerLayout
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        viewPager = findViewById(R.id.viewpager)
+
+        val tabLayout: TabLayout = findViewById(R.id.tabLayout)
+        tabLayout.setupWithViewPager(viewPager)
+
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener(this)
+
+        // default view when starting the app
+        onNavigationItemSelected(navigationView.menu.getItem(0).setCheckable(true))
+
+        val fragmentPagerAdapter = FragmentPagerAdapter(this, supportFragmentManager)
+        viewPager.adapter = fragmentPagerAdapter
+
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val itemId = item.itemId
+
+        when (itemId) {
+            R.id.nav_general ->
+                viewPager.setCurrentItem(constants.GENERAL)
+            R.id.nav_sports ->
+                viewPager.setCurrentItem(constants.SPORTS)
+            R.id.nav_health ->
+                viewPager.setCurrentItem(constants.HEALTH)
+            R.id.nav_entertainment ->
+                viewPager.setCurrentItem(constants.ENTERTAINMENT)
+            R.id.nav_science ->
+                viewPager.setCurrentItem(constants.SCIENCE)
+            R.id.nav_business ->
+                viewPager.setCurrentItem(constants.BUSINESS)
+            R.id.nav_technology ->
+                viewPager.setCurrentItem(constants.TECHNOLOGY)
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START)
+
+        return true
+    }
+
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START)
+        else
+            super.onBackPressed()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -56,10 +96,11 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.top_app_bar_search) return super.onOptionsItemSelected(item)
+        return super.onOptionsItemSelected(item)
     }
+
 }
 
 

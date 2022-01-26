@@ -10,20 +10,29 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:fitsSystemWindows="true"
             android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
             android:theme="@style/Theme.MvvmGlobalNewsApp.AppBarOverlay">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/material_toolbar"
-                style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:menu="@menu/menu"
-                app:navigationIcon="@drawable/baseline_navigation_black_24dp"
-                app:popupTheme="@style/Theme.MvvmGlobalNewsApp.PopupOverlay"
-                app:title="All of News" />
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:title="Globally News"
+                style="@style/ToolbarStyle"
+                app:popupTheme="@style/Theme.MvvmGlobalNewsApp.PopupOverlay" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/white"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@android:color/darker_gray"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="@android:color/holo_green_dark"
+                app:tabTextColor="@android:color/background_dark" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

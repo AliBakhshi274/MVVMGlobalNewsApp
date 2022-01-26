@@ -6,13 +6,17 @@
         <entry key="../../../../../layout/custom_preview.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3175925925925926" />
         <entry key="app/src/main/res/drawable/baseline_balance_black_24dp.xml" value="0.37447916666666664" />
+        <entry key="app/src/main/res/drawable/baseline_density_medium_black_24dp.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/baseline_navigation_black_24dp.xml" value="0.37447916666666664" />
+        <entry key="app/src/main/res/drawable/baseline_search_black_24dp.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable/ic_baseline_navigation_24.xml" value="0.3687179487179487" />
         <entry key="app/src/main/res/drawable/ic_entertainment_item_24.xml" value="0.37395833333333334" />
         <entry key="app/src/main/res/drawable/ic_general_item_24.xml" value="0.37447916666666664" />
         <entry key="app/src/main/res/drawable/ic_health_item.xml" value="0.37395833333333334" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3175925925925926" />
         <entry key="app/src/main/res/drawable/ic_menu_camera.xml" value="0.3175925925925926" />
         <entry key="app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.3101851851851852" />
+        <entry key="app/src/main/res/layout-v26/app_bar_main.xml" value="0.20244565217391305" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26811594202898553" />
         <entry key="app/src/main/res/layout/adsf.xml" value="0.1" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.35833333333333334" />
@@ -34,6 +38,9 @@
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.3578125" />
         <entry key="app/src/main/res/menu/main.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/menu/menu_dark_mode.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/menu/menu_light_mode.xml" value="0.35833333333333334" />
+        <entry key="app/src/main/res/menu/nav_drawer_menu.xml" value="0.35833333333333334" />
       </map>
     </option>
   </component>

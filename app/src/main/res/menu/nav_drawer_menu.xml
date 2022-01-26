@@ -4,6 +4,7 @@
     tools:showIn="navigation_view">
 
     <group
+        android:id="@+id/group_more"
         android:checkableBehavior="single"
         android:menuCategory="secondary">
 
@@ -26,6 +27,47 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/baseline_question_mark_black_24dp"
             android:title="@string/menu_about" />
+
+    </group>
+
+    <group
+        android:id="@+id/group_categories"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_general"
+            android:icon="@drawable/ic_general_item_24"
+            android:title="@string/General" />
+
+        <item
+            android:id="@+id/nav_sports"
+            android:icon="@drawable/ic_sports_item_24"
+            android:title="@string/Sports" />
+
+        <item
+            android:id="@+id/nav_health"
+            android:icon="@drawable/ic_health_item"
+            android:title="@string/Health" />
+
+        <item
+            android:id="@+id/nav_entertainment"
+            android:icon="@drawable/ic_entertainment_item_24"
+            android:title="@string/Entertainment" />
+
+        <item
+            android:id="@+id/nav_science"
+            android:icon="@drawable/ic_science_item_24"
+            android:title="@string/Science" />
+
+        <item
+            android:id="@+id/nav_business"
+            android:icon="@drawable/ic_business_item_24"
+            android:title="@string/Business" />
+
+        <item
+            android:id="@+id/nav_technology"
+            android:icon="@drawable/ic_technology_item_24"
+            android:title="@string/Technology" />
 
     </group>
 </menu>

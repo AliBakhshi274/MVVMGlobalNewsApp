@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
 
     <style name="Theme.MvvmGlobalNewsApp.NoActionBar">
@@ -23,4 +24,20 @@
 
     <style name="Theme.MvvmGlobalNewsApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/black</item>
+    </style>
+    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@android:color/white</item>
+        <item name="titleTextColor">@android:color/black</item>
+    </style>
+
 </resources>
+
+
+
+
+
+
+
+

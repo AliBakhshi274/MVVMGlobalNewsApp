@@ -7,23 +7,6 @@
     android:orientation="vertical"
     tools:context=".ui.home.HomeFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.MvvmGlobalNewsApp.AppBarOverlay">
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_orange_light"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="@android:color/darker_gray"
-            app:tabMode="scrollable"
-            app:tabSelectedTextColor="@android:color/holo_green_dark"
-            app:tabTextColor="@android:color/background_dark" />
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
