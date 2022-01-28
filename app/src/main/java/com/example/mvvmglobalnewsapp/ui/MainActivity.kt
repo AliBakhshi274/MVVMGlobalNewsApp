@@ -8,8 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.example.mvvmglobalnewsapp.R
+import com.example.mvvmglobalnewsapp.database.ArticleDatabase
+import com.example.mvvmglobalnewsapp.repository.NewsRepository
 import com.example.mvvmglobalnewsapp.ui.home.FragmentPagerAdapter
 import com.example.mvvmglobalnewsapp.utils.Constants
 import com.google.android.material.navigation.NavigationView
@@ -18,6 +21,10 @@ import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    // mvvmSkeleton
+    lateinit var viewModel: MainViewModel
+
+    // uiConstants_Implementation
     private lateinit var viewPager: ViewPager
     private lateinit var drawerLayout: DrawerLayout
 
@@ -26,6 +33,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        mvvmSkeleton()
+
+        uiConstants_Implementation()
+
+    }
+
+    private fun mvvmSkeleton() {
+        val newsRepository = NewsRepository(ArticleDatabase(this))
+        val viewModelProviderFactory = MainViewModelProviderFactory(newsRepository)
+        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(MainViewModel::class.java)
+    }
+
+    private fun uiConstants_Implementation() {
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)

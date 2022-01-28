@@ -6,10 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.mvvmglobalnewsapp.R
+import com.example.mvvmglobalnewsapp.ui.MainActivity
+import com.example.mvvmglobalnewsapp.ui.MainViewModel
 
 class HealthFragment : Fragment() {
+
+    lateinit var mainViewModel: MainViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        mainViewModel = (activity as MainActivity).viewModel
 
     }
 
