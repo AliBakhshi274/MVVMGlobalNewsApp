@@ -13,8 +13,14 @@ import androidx.viewpager.widget.ViewPager
 import com.example.mvvmglobalnewsapp.R
 import com.example.mvvmglobalnewsapp.database.ArticleDatabase
 import com.example.mvvmglobalnewsapp.repository.NewsRepository
-import com.example.mvvmglobalnewsapp.ui.home.FragmentPagerAdapter
-import com.example.mvvmglobalnewsapp.utils.Constants
+import com.example.mvvmglobalnewsapp.adapters.ViewpagerAdapter
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.BUSINESS
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.ENTERTAINMENT
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.GENERAL
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.HEALTH
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.SCIENCE
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.SPORTS
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.TECHNOLOGY
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 
@@ -28,15 +34,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var viewPager: ViewPager
     private lateinit var drawerLayout: DrawerLayout
 
-    val constants: Constants = Constants()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         mvvmSkeleton()
 
-        uiConstants_Implementation()
+        uiFeatures()
 
     }
 
@@ -46,7 +50,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(MainViewModel::class.java)
     }
 
-    private fun uiConstants_Implementation() {
+    private fun uiFeatures() {
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -74,7 +78,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // default view when starting the app
         onNavigationItemSelected(navigationView.menu.getItem(0).setCheckable(true))
 
-        val fragmentPagerAdapter = FragmentPagerAdapter(this, supportFragmentManager)
+        val fragmentPagerAdapter = ViewpagerAdapter(this, supportFragmentManager)
         viewPager.adapter = fragmentPagerAdapter
 
     }
@@ -84,19 +88,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         when (itemId) {
             R.id.nav_general ->
-                viewPager.setCurrentItem(constants.GENERAL)
+                viewPager.setCurrentItem(GENERAL)
             R.id.nav_sports ->
-                viewPager.setCurrentItem(constants.SPORTS)
+                viewPager.setCurrentItem(SPORTS)
             R.id.nav_health ->
-                viewPager.setCurrentItem(constants.HEALTH)
+                viewPager.setCurrentItem(HEALTH)
             R.id.nav_entertainment ->
-                viewPager.setCurrentItem(constants.ENTERTAINMENT)
+                viewPager.setCurrentItem(ENTERTAINMENT)
             R.id.nav_science ->
-                viewPager.setCurrentItem(constants.SCIENCE)
+                viewPager.setCurrentItem(SCIENCE)
             R.id.nav_business ->
-                viewPager.setCurrentItem(constants.BUSINESS)
+                viewPager.setCurrentItem(BUSINESS)
             R.id.nav_technology ->
-                viewPager.setCurrentItem(constants.TECHNOLOGY)
+                viewPager.setCurrentItem(TECHNOLOGY)
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)

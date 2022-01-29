@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -36,8 +35,6 @@ class NewsAdapter : RecyclerView.Adapter<ArticleViewHolder>() {
         var thumbnailIV: ImageView = itemView.findViewById(R.id.thumbnail_image_card)
         var authorTV: TextView = itemView.findViewById(R.id.author_card)
         var publishedAtTV: TextView = itemView.findViewById(R.id.publishedAt_card)
-        var shareIV: ImageView = itemView.findViewById(R.id.share_image_card)
-        var cardView: CardView = itemView.findViewById(R.id.card_view)
 
     }
 

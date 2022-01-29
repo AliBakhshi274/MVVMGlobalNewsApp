@@ -1,4 +1,4 @@
-package com.example.mvvmglobalnewsapp.ui.home.slidingTab.general
+package com.example.mvvmglobalnewsapp.ui.home
 
 import android.os.Bundle
 import android.util.Log
@@ -12,17 +12,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmglobalnewsapp.R
 import com.example.mvvmglobalnewsapp.adapters.NewsAdapter
+import com.example.mvvmglobalnewsapp.models.NewsResponse
 import com.example.mvvmglobalnewsapp.ui.MainActivity
 import com.example.mvvmglobalnewsapp.ui.MainViewModel
 import com.example.mvvmglobalnewsapp.utils.Resource
 
-
-class GeneralFragment : Fragment() {
+open class BaseFragment : Fragment() {
 
     lateinit var mainViewModel: MainViewModel
-    lateinit var newsAdapter: NewsAdapter
 
     lateinit var recyclerView: RecyclerView
+    lateinit var newsAdapter: NewsAdapter
+
     lateinit var progressBar: ProgressBar
 
     override fun onCreateView(
@@ -42,76 +43,44 @@ class GeneralFragment : Fragment() {
         setupRecyclerView()
 
         mainViewModel.breakingNews.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is Resource.Success -> {
-                    hideProgressBar()
-                    it.data?.let { newsResponse ->
-                        newsAdapter.differ.submitList(newsResponse.articles)
-                    }
-                }
-                is Resource.Error -> {
-                    hideProgressBar()
-                    it.message?.let { message ->
-                        Log.e("GeneralFragment", "An error occured: $message")
-                    }
-                }
-                is Resource.Loading -> {
-                    showProgressBar()
-                }
-            }
+            handleResponse(it)
         })
-
     }
 
-    private fun hideProgressBar() {
+    protected fun handleResponse(resource: Resource<NewsResponse>) {
+        when (resource) {
+            is Resource.Success -> {
+                hideProgressBar()
+                resource.data?.let { newsResponse ->
+                    newsAdapter.differ.submitList(newsResponse.articles)
+                }
+            }
+            is Resource.Error -> {
+                hideProgressBar()
+                resource.message?.let { message ->
+                    Log.e("LOG_TAG", "An error occured: $message")
+                }
+            }
+            is Resource.Loading -> {
+                showProgressBar()
+            }
+        }
+    }
+
+    protected fun hideProgressBar() {
         progressBar.visibility = View.INVISIBLE
     }
 
-    private fun showProgressBar() {
+    protected fun showProgressBar() {
         progressBar.visibility = View.VISIBLE
     }
 
-    private fun setupRecyclerView() {
+    protected fun setupRecyclerView() {
         newsAdapter = NewsAdapter()
         recyclerView.apply {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity)
         }
     }
-
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

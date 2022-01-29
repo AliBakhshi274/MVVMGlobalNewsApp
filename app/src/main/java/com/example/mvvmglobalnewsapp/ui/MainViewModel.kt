@@ -20,7 +20,8 @@ class MainViewModel(val newsRepository: NewsRepository) : ViewModel() {
 
     fun getBreakingNews(countryCode: String) = viewModelScope.launch {
         breakingNews.postValue(Resource.Loading())
-        val response = newsRepository.getBreakingNews(countryCode, breakingNewsPage)
+        val response: Response<NewsResponse> =
+            newsRepository.getBreakingNews(countryCode, breakingNewsPage)
         breakingNews.postValue(handleBreakingNewsResponse(response))
     }
 
