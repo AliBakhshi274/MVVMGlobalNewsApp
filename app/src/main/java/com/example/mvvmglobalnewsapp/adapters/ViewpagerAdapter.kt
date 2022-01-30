@@ -26,7 +26,7 @@ class ViewpagerAdapter(private val context: Context, fm: FragmentManager) :
 
     private var tabTitles = arrayOf(
         R.string.general,
-        R.string.sport,
+        R.string.sports,
         R.string.health,
         R.string.science,
         R.string.entertainment,

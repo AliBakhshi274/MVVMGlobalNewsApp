@@ -1,6 +1,6 @@
 package com.example.mvvmglobalnewsapp.utils
 
-public class Constants {
+class Constants {
 
     companion object {
 
@@ -11,8 +11,8 @@ public class Constants {
         val GENERAL = 0
         val SPORTS = 1
         val HEALTH = 2
-        val SCIENCE = 3
-        val ENTERTAINMENT = 4
+        val ENTERTAINMENT = 3
+        val SCIENCE = 4
         val BUSINESS = 5
         val TECHNOLOGY = 6
 

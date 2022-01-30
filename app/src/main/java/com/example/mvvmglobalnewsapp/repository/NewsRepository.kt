@@ -6,6 +6,6 @@ import com.example.mvvmglobalnewsapp.database.ArticleDatabase
 class NewsRepository(
     val db: ArticleDatabase
 ) {
-    suspend fun getBreakingNews(countryCode: String, pageNumber: Int) =
-        newsApi.retrofitService.getBreakingNews(countryCode, pageNumber)
+    suspend fun getBreakingNews(countryCode: String, category: String, pageNumber: Int) =
+        newsApi.retrofitService.getBreakingNews(countryCode, category, pageNumber)
 }

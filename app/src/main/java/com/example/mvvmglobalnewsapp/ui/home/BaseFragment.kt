@@ -19,12 +19,12 @@ import com.example.mvvmglobalnewsapp.utils.Resource
 
 open class BaseFragment : Fragment() {
 
-    lateinit var mainViewModel: MainViewModel
+    protected lateinit var mainViewModel: MainViewModel
 
-    lateinit var recyclerView: RecyclerView
-    lateinit var newsAdapter: NewsAdapter
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var newsAdapter: NewsAdapter
 
-    lateinit var progressBar: ProgressBar
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,12 +39,8 @@ open class BaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel = (activity as MainActivity).viewModel
         setupRecyclerView()
 
-        mainViewModel.breakingNews.observe(viewLifecycleOwner, Observer {
-            handleResponse(it)
-        })
     }
 
     protected fun handleResponse(resource: Resource<NewsResponse>) {
@@ -79,6 +75,7 @@ open class BaseFragment : Fragment() {
         newsAdapter = NewsAdapter()
         recyclerView.apply {
             adapter = newsAdapter
+            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(activity)
         }
     }

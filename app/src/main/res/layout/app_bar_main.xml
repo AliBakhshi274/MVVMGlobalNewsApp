@@ -1,44 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.MainActivity">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/Theme.MvvmGlobalNewsApp.AppBarOverlay">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/ToolbarStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:theme="@style/Theme.MvvmGlobalNewsApp.AppBarOverlay">
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:popupTheme="@style/Theme.MvvmGlobalNewsApp.PopupOverlay"
+            app:title="Globally News" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_scrollFlags="scroll|enterAlways|snap"
-                app:title="Globally News"
-                style="@style/ToolbarStyle"
-                app:popupTheme="@style/Theme.MvvmGlobalNewsApp.PopupOverlay" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/white"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@android:color/darker_gray"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@android:color/holo_green_dark"
+            app:tabTextColor="@android:color/background_dark" />
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/white"
-                app:tabGravity="fill"
-                app:tabIndicatorColor="@android:color/darker_gray"
-                app:tabMode="scrollable"
-                app:tabSelectedTextColor="@android:color/holo_green_dark"
-                app:tabTextColor="@android:color/background_dark" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        </com.google.android.material.appbar.AppBarLayout>
+    <include
+        android:id="@+id/content_main"
+        layout="@layout/content_main" />
 
-        <include
-            android:id="@+id/content_main"
-            layout="@layout/content_main" />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</layout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -13,7 +13,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="general">general</string>
-    <string name="sport">sport</string>
+    <string name="sports">sports</string>
     <string name="health">health</string>
     <string name="science">science</string>
     <string name="entertainment">entertainment</string>

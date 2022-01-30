@@ -1,5 +1,6 @@
 package com.example.mvvmglobalnewsapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -11,9 +12,12 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.example.mvvmglobalnewsapp.R
+import com.example.mvvmglobalnewsapp.adapters.ViewpagerAdapter
 import com.example.mvvmglobalnewsapp.database.ArticleDatabase
 import com.example.mvvmglobalnewsapp.repository.NewsRepository
-import com.example.mvvmglobalnewsapp.adapters.ViewpagerAdapter
+import com.example.mvvmglobalnewsapp.ui.about.AboutActivity
+import com.example.mvvmglobalnewsapp.ui.search.SearchActivity
+import com.example.mvvmglobalnewsapp.ui.settings.SettingsActivity
 import com.example.mvvmglobalnewsapp.utils.Constants.Companion.BUSINESS
 import com.example.mvvmglobalnewsapp.utils.Constants.Companion.ENTERTAINMENT
 import com.example.mvvmglobalnewsapp.utils.Constants.Companion.GENERAL
@@ -101,11 +105,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 viewPager.setCurrentItem(BUSINESS)
             R.id.nav_technology ->
                 viewPager.setCurrentItem(TECHNOLOGY)
+            R.id.nav_about -> {
+                nav_about()
+            }
+            R.id.nav_settings -> {
+                nav_settings()
+            }
+            R.id.nav_search -> {
+                nav_search()
+            }
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)
 
         return true
+    }
+
+    private fun nav_search() {
+        startActivity(Intent(this, SearchActivity().javaClass))
+    }
+
+    private fun nav_settings() {
+        startActivity(Intent(this, SettingsActivity().javaClass))
+    }
+
+    private fun nav_about() {
+        startActivity(Intent(this, AboutActivity().javaClass))
     }
 
     override fun onBackPressed() {
