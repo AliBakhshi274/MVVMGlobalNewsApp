@@ -8,4 +8,7 @@ class NewsRepository(
 ) {
     suspend fun getBreakingNews(countryCode: String, category: String, pageNumber: Int) =
         newsApi.retrofitService.getBreakingNews(countryCode, category, pageNumber)
+
+    suspend fun searchForNews(searchQuery: String, pageNumber: Int) =
+        newsApi.retrofitService.searchForNews(searchQuery, pageNumber)
 }

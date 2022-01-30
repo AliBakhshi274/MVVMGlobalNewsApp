@@ -12,7 +12,7 @@ class TechnologyFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         mainViewModel = (activity as MainActivity).viewModel
 
-        mainViewModel.gettechnologyBreakingNews("us", "technology")
+        mainViewModel.getTechnologyBreakingNews("us", "technology")
 
         mainViewModel.technologyBreakingNews.observe(viewLifecycleOwner, Observer {
             handleResponse(it)

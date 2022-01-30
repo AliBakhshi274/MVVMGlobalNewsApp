@@ -2,6 +2,7 @@ package com.example.mvvmglobalnewsapp.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(
     tableName = "articles"
