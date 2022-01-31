@@ -12,12 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MvvmGlobalNewsApp">
         <activity
+            android:theme="@style/Theme.MvvmGlobalNewsApp.NoActionBar"
+            android:name=".ui.articleContent.ArticleContentActivity"
+            android:exported="false" />
+        <activity
+            android:theme="@style/Theme.MvvmGlobalNewsApp.NoActionBar"
             android:name=".ui.settings.SettingsActivity"
             android:exported="false" />
         <activity
+            android:theme="@style/Theme.MvvmGlobalNewsApp.NoActionBar"
             android:name=".ui.search.SearchActivity"
             android:exported="false" />
         <activity
+            android:theme="@style/Theme.MvvmGlobalNewsApp.NoActionBar"
             android:name=".ui.about.AboutActivity"
             android:exported="false" />
         <activity

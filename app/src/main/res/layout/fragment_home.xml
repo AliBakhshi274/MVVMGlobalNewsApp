@@ -6,18 +6,17 @@
     android:layout_height="match_parent">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            tools:listitem="@layout/news_card_item"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            tools:listitem="@layout/news_card_item" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
     <ProgressBar
         android:id="@+id/progressBar_loadingIndicator"
@@ -28,6 +27,5 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

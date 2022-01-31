@@ -32,4 +32,5 @@
     <string name="Science">Science</string>
     <string name="Technology">Technology</string>
     <string name="search">search</string>
+    <string name="favorite">favorite</string>
 </resources>

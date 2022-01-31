@@ -1,5 +1,6 @@
 package com.example.mvvmglobalnewsapp.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,16 +14,23 @@ import com.example.mvvmglobalnewsapp.R
 import com.example.mvvmglobalnewsapp.adapters.NewsAdapter
 import com.example.mvvmglobalnewsapp.models.NewsResponse
 import com.example.mvvmglobalnewsapp.ui.MainViewModel
+import com.example.mvvmglobalnewsapp.ui.articleContent.ArticleContentActivity
 import com.example.mvvmglobalnewsapp.utils.Resource
+
+const val ARTICLE_URL_TO_IMAGE = "articleUrlToImage"
+const val ARTICLE_TITLE = "articleTitle"
+const val ARTICLE_CONTENT = "articleContent"
 
 open class BaseFragment : Fragment() {
 
     protected lateinit var mainViewModel: MainViewModel
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var newsAdapter: NewsAdapter
+    lateinit var newsAdapter: NewsAdapter
 
     private lateinit var progressBar: ProgressBar
+
+    private lateinit var intent: Intent
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,15 +38,35 @@ open class BaseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
-        recyclerView = view.findViewById(R.id.recyclerView)
-        progressBar = view.findViewById(R.id.progressBar_loadingIndicator)
+        init(view)
+        itemClickListener()
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun init(view: View) {
+        recyclerView = view.findViewById(R.id.recyclerView)
+        progressBar = view.findViewById(R.id.progressBar_loadingIndicator)
+        intent = Intent(requireContext(), ArticleContentActivity().javaClass)
         setupRecyclerView()
+    }
 
+    private fun setupRecyclerView() {
+        newsAdapter = NewsAdapter()
+        recyclerView.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+    }
+
+    private fun itemClickListener() {
+        newsAdapter.setOnItemClickListener(object : NewsAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                intent.putExtra(ARTICLE_URL_TO_IMAGE, newsAdapter.articlesList.get(position).urlToImage)
+                intent.putExtra(ARTICLE_TITLE, newsAdapter.articlesList.get(position).content)
+                intent.putExtra(ARTICLE_CONTENT, newsAdapter.articlesList.get(position).content)
+                startActivity(intent)
+            }
+        })
     }
 
     protected fun handleResponse(resource: Resource<NewsResponse>) {
@@ -61,21 +89,12 @@ open class BaseFragment : Fragment() {
         }
     }
 
-    protected fun hideProgressBar() {
+    private fun hideProgressBar() {
         progressBar.visibility = View.INVISIBLE
     }
 
-    protected fun showProgressBar() {
+    private fun showProgressBar() {
         progressBar.visibility = View.VISIBLE
-    }
-
-    protected fun setupRecyclerView() {
-        newsAdapter = NewsAdapter()
-        recyclerView.apply {
-            adapter = newsAdapter
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(activity)
-        }
     }
 
 }

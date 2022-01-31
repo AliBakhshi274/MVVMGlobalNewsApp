@@ -4,21 +4,23 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="235dp"
     android:padding="5dp"
-    android:layout_height="wrap_content"
     tools:background="#EAEAEA">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:backgroundTint="#FFFFFF"
-        android:clickable="true"
-        android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        card_view:cardCornerRadius="20dp">
+        card_view:cardCornerRadius="20dp"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintLeft_toLeftOf="parent"
+        card_view:layout_constraintRight_toRightOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -101,8 +103,8 @@
                     android:id="@+id/add_to_favorites"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="add to favorite"
                     android:layout_alignParentTop="true"
+                    android:contentDescription="add to favorite"
                     android:src="@drawable/ic_baseline_favorite_24" />
 
                 <ImageView

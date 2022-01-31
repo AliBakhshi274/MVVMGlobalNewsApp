@@ -147,7 +147,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.top_app_bar_search) return super.onOptionsItemSelected(item)
         return super.onOptionsItemSelected(item)
     }
 
