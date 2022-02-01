@@ -16,6 +16,9 @@ import com.example.mvvmglobalnewsapp.adapters.ViewpagerAdapter
 import com.example.mvvmglobalnewsapp.database.ArticleDatabase
 import com.example.mvvmglobalnewsapp.repository.NewsRepository
 import com.example.mvvmglobalnewsapp.ui.about.AboutActivity
+import com.example.mvvmglobalnewsapp.ui.saved.SavedNewsActivity
+import com.example.mvvmglobalnewsapp.ui.saved.SavedNewsViewModel
+import com.example.mvvmglobalnewsapp.ui.saved.SavedNewsViewModelProviderFactory
 import com.example.mvvmglobalnewsapp.ui.search.SearchActivity
 import com.example.mvvmglobalnewsapp.ui.settings.SettingsActivity
 import com.example.mvvmglobalnewsapp.utils.Constants.Companion.BUSINESS
@@ -114,11 +117,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_search -> {
                 nav_search()
             }
+            R.id.nav_saved -> {
+                nav_favorites()
+            }
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)
 
         return true
+    }
+
+    private fun nav_favorites() {
+        startActivity(Intent(this, SavedNewsActivity().javaClass))
     }
 
     private fun nav_search() {

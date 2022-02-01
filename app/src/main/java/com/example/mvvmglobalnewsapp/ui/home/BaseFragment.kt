@@ -20,6 +20,7 @@ import com.example.mvvmglobalnewsapp.utils.Resource
 const val ARTICLE_URL_TO_IMAGE = "articleUrlToImage"
 const val ARTICLE_TITLE = "articleTitle"
 const val ARTICLE_CONTENT = "articleContent"
+const val ARTICLE = "article"
 
 open class BaseFragment : Fragment() {
 
@@ -61,9 +62,7 @@ open class BaseFragment : Fragment() {
     private fun itemClickListener() {
         newsAdapter.setOnItemClickListener(object : NewsAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                baseIntent.putExtra(ARTICLE_URL_TO_IMAGE, newsAdapter.articlesList.get(position).urlToImage)
-                baseIntent.putExtra(ARTICLE_TITLE, newsAdapter.articlesList.get(position).title)
-                baseIntent.putExtra(ARTICLE_CONTENT, newsAdapter.articlesList.get(position).content)
+                baseIntent.putExtra(ARTICLE, newsAdapter.articlesList.get(position))
                 startActivity(baseIntent)
             }
         })

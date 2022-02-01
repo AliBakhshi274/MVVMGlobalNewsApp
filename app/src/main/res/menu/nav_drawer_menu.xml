@@ -19,6 +19,11 @@
             android:title="@string/menu_settings" />
 
         <item
+            android:id="@+id/nav_saved"
+            android:icon="@drawable/ic_baseline_favorite_24"
+            android:title="@string/favorites"/>
+
+        <item
             android:id="@+id/nav_about"
             android:icon="@drawable/baseline_question_mark_black_24dp"
             android:title="@string/menu_about" />

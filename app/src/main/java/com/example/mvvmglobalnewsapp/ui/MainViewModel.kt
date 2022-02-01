@@ -45,21 +45,18 @@ class MainViewModel(val newsRepository: NewsRepository) : ViewModel() {
             newsRepository.getBreakingNews(countryCode, category, technologyBreakingNewsPage)
         technologyBreakingNews.postValue(handleBreakingNewsResponse(response))
     }
-
     fun getBusinessBreakingNews(countryCode: String, category: String) = viewModelScope.launch {
         businessBreakingNews.postValue(Resource.Loading())
         val response: Response<NewsResponse> =
             newsRepository.getBreakingNews(countryCode, category, businessBreakingNewsPage)
         businessBreakingNews.postValue(handleBreakingNewsResponse(response))
     }
-
     fun getScienceBreakingNews(countryCode: String, category: String) = viewModelScope.launch {
         scienceBreakingNews.postValue(Resource.Loading())
         val response: Response<NewsResponse> =
             newsRepository.getBreakingNews(countryCode, category, scienceBreakingNewsPage)
         scienceBreakingNews.postValue(handleBreakingNewsResponse(response))
     }
-
     fun getEntertainmentBreakingNews(countryCode: String, category: String) =
         viewModelScope.launch {
             entertainmentBreakingNews.postValue(Resource.Loading())
@@ -67,22 +64,18 @@ class MainViewModel(val newsRepository: NewsRepository) : ViewModel() {
                 newsRepository.getBreakingNews(countryCode, category, entertainmentBreakingNewsPage)
             entertainmentBreakingNews.postValue(handleBreakingNewsResponse(response))
         }
-
-
     fun getHealthBreakingNews(countryCode: String, category: String) = viewModelScope.launch {
         healthBreakingNews.postValue(Resource.Loading())
         val response: Response<NewsResponse> =
             newsRepository.getBreakingNews(countryCode, category, healthBreakingNewsPage)
         healthBreakingNews.postValue(handleBreakingNewsResponse(response))
     }
-
     fun getGeneralBreakingNews(countryCode: String, category: String) = viewModelScope.launch {
         generalBreakingNews.postValue(Resource.Loading())
         val response: Response<NewsResponse> =
             newsRepository.getBreakingNews(countryCode, category, generalBreakingNewsPage)
         generalBreakingNews.postValue(handleBreakingNewsResponse(response))
     }
-
     fun getSportsBreakingNews(countryCode: String, category: String) = viewModelScope.launch {
         sportsBreakingNews.postValue(Resource.Loading())
         val response: Response<NewsResponse> =
@@ -100,6 +93,13 @@ class MainViewModel(val newsRepository: NewsRepository) : ViewModel() {
     }
 
 }
+
+
+
+
+
+
+
 
 
 

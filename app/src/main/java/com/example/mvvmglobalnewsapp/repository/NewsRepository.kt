@@ -2,6 +2,7 @@ package com.example.mvvmglobalnewsapp.repository
 
 import com.example.mvvmglobalnewsapp.api.newsApi
 import com.example.mvvmglobalnewsapp.database.ArticleDatabase
+import com.example.mvvmglobalnewsapp.models.Article
 
 class NewsRepository(
     val db: ArticleDatabase
@@ -11,4 +12,11 @@ class NewsRepository(
 
     suspend fun searchForNews(searchQuery: String, pageNumber: Int) =
         newsApi.retrofitService.searchForNews(searchQuery, pageNumber)
+
+    suspend fun upsert(article: Article) = db.getArticleDao().upsert(article)
+
+    fun getSavedNews() = db.getArticleDao().getAllArticles()
+
+    suspend fun deleteArticle(article: Article) = db.getArticleDao().deleteArticle(article)
+
 }
