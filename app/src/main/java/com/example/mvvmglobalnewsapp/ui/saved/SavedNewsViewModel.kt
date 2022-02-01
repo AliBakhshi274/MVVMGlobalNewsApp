@@ -14,4 +14,8 @@ class SavedNewsViewModel(val newsRepository: NewsRepository) : ViewModel() {
         newsRepository.deleteArticle(article)
     }
 
+    fun saveArticle(article: Article) = viewModelScope.launch {
+        newsRepository.upsert(article)
+    }
+
 }

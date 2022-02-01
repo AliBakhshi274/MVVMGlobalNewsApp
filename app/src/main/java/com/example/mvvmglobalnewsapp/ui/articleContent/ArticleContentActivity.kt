@@ -78,7 +78,7 @@ class ArticleContentActivity : AppCompatActivity() {
     private fun fabClickListener() {
         fab.setOnClickListener {
             viewModel.saveArticle(article)
-            Snackbar.make(View(this), "Article Saved!", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(findViewById(android.R.id.content), "Article Saved!", Snackbar.LENGTH_LONG).show()
         }
     }
 }
