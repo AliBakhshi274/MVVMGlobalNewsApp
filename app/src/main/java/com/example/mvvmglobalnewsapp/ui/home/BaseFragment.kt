@@ -30,7 +30,7 @@ open class BaseFragment : Fragment() {
 
     private lateinit var progressBar: ProgressBar
 
-    private lateinit var intent: Intent
+    private lateinit var baseIntent: Intent
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +46,7 @@ open class BaseFragment : Fragment() {
     private fun init(view: View) {
         recyclerView = view.findViewById(R.id.recyclerView)
         progressBar = view.findViewById(R.id.progressBar_loadingIndicator)
-        intent = Intent(requireContext(), ArticleContentActivity().javaClass)
+        baseIntent = Intent(requireContext(), ArticleContentActivity().javaClass)
         setupRecyclerView()
     }
 
@@ -61,10 +61,10 @@ open class BaseFragment : Fragment() {
     private fun itemClickListener() {
         newsAdapter.setOnItemClickListener(object : NewsAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                intent.putExtra(ARTICLE_URL_TO_IMAGE, newsAdapter.articlesList.get(position).urlToImage)
-                intent.putExtra(ARTICLE_TITLE, newsAdapter.articlesList.get(position).content)
-                intent.putExtra(ARTICLE_CONTENT, newsAdapter.articlesList.get(position).content)
-                startActivity(intent)
+                baseIntent.putExtra(ARTICLE_URL_TO_IMAGE, newsAdapter.articlesList.get(position).urlToImage)
+                baseIntent.putExtra(ARTICLE_TITLE, newsAdapter.articlesList.get(position).title)
+                baseIntent.putExtra(ARTICLE_CONTENT, newsAdapter.articlesList.get(position).content)
+                startActivity(baseIntent)
             }
         })
     }
