@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -82,7 +83,8 @@ open class BaseFragment : Fragment() {
             is Resource.Error -> {
                 hideProgressBar()
                 resource.message?.let { message ->
-                    Log.e("BaseFragment", "An error occured: $message")
+                    Toast.makeText(activity, "An error occurred: $message", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
             is Resource.Loading -> {

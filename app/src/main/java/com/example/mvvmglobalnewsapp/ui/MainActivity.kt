@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun mvvmSkeleton() {
         val newsRepository = NewsRepository(ArticleDatabase(this))
-        val viewModelProviderFactory = MainViewModelProviderFactory(newsRepository)
+        val viewModelProviderFactory = MainViewModelProviderFactory(application, newsRepository)
         viewModel = ViewModelProvider(this, viewModelProviderFactory).get(MainViewModel::class.java)
     }
 
