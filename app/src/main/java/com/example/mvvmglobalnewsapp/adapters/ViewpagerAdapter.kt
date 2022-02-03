@@ -12,13 +12,13 @@ import com.example.mvvmglobalnewsapp.ui.home.health.HealthFragment
 import com.example.mvvmglobalnewsapp.ui.home.science.ScienceFragment
 import com.example.mvvmglobalnewsapp.ui.home.sports.SportsFragment
 import com.example.mvvmglobalnewsapp.ui.home.technology.TechnologyFragment
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.BUSINESS
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.ENTERTAINMENT
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.GENERAL
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.HEALTH
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.SCIENCE
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.SPORTS
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.TECHNOLOGY
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.BUSINESS_PAGE_NUMBER
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.ENTERTAINMENT_PAGE_NUMBER
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.GENERAL_PAGE_NUMBER
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.HEALTH_PAGE_NUMBER
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.SCIENCE_PAGE_NUMBER
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.SPORTS_PAGE_NUMBER
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.TECHNOLOGY_PAGE_NUMBER
 import com.example.mvvmglobalnewsapp.utils.Constants.Companion.TOTAL_PAGES
 
 class ViewpagerAdapter(private val context: Context, fm: FragmentManager) :
@@ -37,25 +37,25 @@ class ViewpagerAdapter(private val context: Context, fm: FragmentManager) :
     //    get Item Fragment
     override fun getItem(position: Int): Fragment {
         when (position) {
-            GENERAL -> return GeneralFragment()
-            SPORTS -> return SportsFragment()
-            HEALTH -> return HealthFragment()
-            ENTERTAINMENT -> return EntertainmentFragment()
-            SCIENCE -> return ScienceFragment()
-            BUSINESS -> return BusinessFragment()
-            TECHNOLOGY -> return TechnologyFragment()
+            GENERAL_PAGE_NUMBER -> return GeneralFragment()
+            SPORTS_PAGE_NUMBER -> return SportsFragment()
+            HEALTH_PAGE_NUMBER -> return HealthFragment()
+            ENTERTAINMENT_PAGE_NUMBER -> return EntertainmentFragment()
+            SCIENCE_PAGE_NUMBER -> return ScienceFragment()
+            BUSINESS_PAGE_NUMBER -> return BusinessFragment()
+            TECHNOLOGY_PAGE_NUMBER -> return TechnologyFragment()
             else -> return GeneralFragment()
         }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
         when (position) {
-            GENERAL -> return context.getString(tabTitles.get(0))
-            SPORTS -> return context.getString(tabTitles.get(1))
-            HEALTH -> return context.getString(tabTitles.get(2))
-            ENTERTAINMENT -> return context.getString(tabTitles.get(3))
-            SCIENCE -> return context.getString(tabTitles.get(4))
-            BUSINESS -> return context.getString(tabTitles.get(5))
+            GENERAL_PAGE_NUMBER -> return context.getString(tabTitles.get(0))
+            SPORTS_PAGE_NUMBER -> return context.getString(tabTitles.get(1))
+            HEALTH_PAGE_NUMBER -> return context.getString(tabTitles.get(2))
+            ENTERTAINMENT_PAGE_NUMBER -> return context.getString(tabTitles.get(3))
+            SCIENCE_PAGE_NUMBER -> return context.getString(tabTitles.get(4))
+            BUSINESS_PAGE_NUMBER -> return context.getString(tabTitles.get(5))
             else -> return context.getString(tabTitles.get(6))
         }
     }

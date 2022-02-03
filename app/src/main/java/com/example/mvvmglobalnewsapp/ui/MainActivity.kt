@@ -17,17 +17,15 @@ import com.example.mvvmglobalnewsapp.database.ArticleDatabase
 import com.example.mvvmglobalnewsapp.repository.NewsRepository
 import com.example.mvvmglobalnewsapp.ui.about.AboutActivity
 import com.example.mvvmglobalnewsapp.ui.saved.SavedNewsActivity
-import com.example.mvvmglobalnewsapp.ui.saved.SavedNewsViewModel
-import com.example.mvvmglobalnewsapp.ui.saved.SavedNewsViewModelProviderFactory
 import com.example.mvvmglobalnewsapp.ui.search.SearchActivity
 import com.example.mvvmglobalnewsapp.ui.settings.SettingsActivity
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.BUSINESS
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.ENTERTAINMENT
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.GENERAL
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.HEALTH
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.SCIENCE
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.SPORTS
-import com.example.mvvmglobalnewsapp.utils.Constants.Companion.TECHNOLOGY
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.BUSINESS_PAGE_NUMBER
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.ENTERTAINMENT_PAGE_NUMBER
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.GENERAL_PAGE_NUMBER
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.HEALTH_PAGE_NUMBER
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.SCIENCE_PAGE_NUMBER
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.SPORTS_PAGE_NUMBER
+import com.example.mvvmglobalnewsapp.utils.Constants.Companion.TECHNOLOGY_PAGE_NUMBER
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 
@@ -95,19 +93,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         when (itemId) {
             R.id.nav_general ->
-                viewPager.setCurrentItem(GENERAL)
+                viewPager.setCurrentItem(GENERAL_PAGE_NUMBER)
             R.id.nav_sports ->
-                viewPager.setCurrentItem(SPORTS)
+                viewPager.setCurrentItem(SPORTS_PAGE_NUMBER)
             R.id.nav_health ->
-                viewPager.setCurrentItem(HEALTH)
+                viewPager.setCurrentItem(HEALTH_PAGE_NUMBER)
             R.id.nav_entertainment ->
-                viewPager.setCurrentItem(ENTERTAINMENT)
+                viewPager.setCurrentItem(ENTERTAINMENT_PAGE_NUMBER)
             R.id.nav_science ->
-                viewPager.setCurrentItem(SCIENCE)
+                viewPager.setCurrentItem(SCIENCE_PAGE_NUMBER)
             R.id.nav_business ->
-                viewPager.setCurrentItem(BUSINESS)
+                viewPager.setCurrentItem(BUSINESS_PAGE_NUMBER)
             R.id.nav_technology ->
-                viewPager.setCurrentItem(TECHNOLOGY)
+                viewPager.setCurrentItem(TECHNOLOGY_PAGE_NUMBER)
             R.id.nav_about -> {
                 nav_about()
             }

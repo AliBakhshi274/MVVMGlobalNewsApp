@@ -14,6 +14,7 @@ class SearchViewModel(val newsRepository: NewsRepository) : ViewModel() {
     // Search For News
     val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var searchNewsPage = 1
+    var searchNewsResponse: NewsResponse? = null
 
 
     fun searchForNews(searchQuery: String) = viewModelScope.launch {

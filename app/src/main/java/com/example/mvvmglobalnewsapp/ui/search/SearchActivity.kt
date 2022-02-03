@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.PackageManagerCompat.LOG_TAG
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,9 +20,7 @@ import com.example.mvvmglobalnewsapp.database.ArticleDatabase
 import com.example.mvvmglobalnewsapp.models.NewsResponse
 import com.example.mvvmglobalnewsapp.repository.NewsRepository
 import com.example.mvvmglobalnewsapp.ui.articleContent.ArticleContentActivity
-import com.example.mvvmglobalnewsapp.ui.home.ARTICLE_CONTENT
-import com.example.mvvmglobalnewsapp.ui.home.ARTICLE_TITLE
-import com.example.mvvmglobalnewsapp.ui.home.ARTICLE_URL_TO_IMAGE
+import com.example.mvvmglobalnewsapp.ui.home.ARTICLE
 import com.example.mvvmglobalnewsapp.utils.Resource
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
@@ -60,7 +59,7 @@ class SearchActivity : AppCompatActivity() {
 
     }
 
-    private fun init(){
+    private fun init() {
         searchNewsEditText = findViewById(R.id.search_news)
         searchRecyclerView = findViewById(R.id.recyclerView_search_activity)
         searchProgressBar = findViewById(R.id.progressBar_loadingIndicator_search_activity)
@@ -90,7 +89,7 @@ class SearchActivity : AppCompatActivity() {
             job = MainScope().launch {
                 delay(500L)
                 editable?.let {
-                    if (editable.toString().isNotEmpty()){
+                    if (editable.toString().isNotEmpty()) {
                         searchViewModel.searchForNews(editable.toString())
                     }
                 }
@@ -101,9 +100,7 @@ class SearchActivity : AppCompatActivity() {
     private fun itemClickListener() {
         searchNewsAdapter.setOnItemClickListener(object : NewsAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                searchIntent.putExtra(ARTICLE_URL_TO_IMAGE, searchNewsAdapter.articlesList.get(position).urlToImage)
-                searchIntent.putExtra(ARTICLE_TITLE, searchNewsAdapter.articlesList.get(position).title)
-                searchIntent.putExtra(ARTICLE_CONTENT, searchNewsAdapter.articlesList.get(position).content)
+                searchIntent.putExtra(ARTICLE, searchNewsAdapter.articlesList.get(position))
                 startActivity(searchIntent)
             }
         })
@@ -120,7 +117,7 @@ class SearchActivity : AppCompatActivity() {
             is Resource.Error -> {
                 hideProgressBar()
                 resource.message?.let { message ->
-                    Log.e("LOG_TAG", "An error occured: $message")
+                    Log.e("SEARCH Activity", "An error occured: $message")
                 }
             }
             is Resource.Loading -> {

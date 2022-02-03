@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,23 +16,25 @@ import com.example.mvvmglobalnewsapp.adapters.NewsAdapter
 import com.example.mvvmglobalnewsapp.models.NewsResponse
 import com.example.mvvmglobalnewsapp.ui.MainViewModel
 import com.example.mvvmglobalnewsapp.ui.articleContent.ArticleContentActivity
+import com.example.mvvmglobalnewsapp.utils.Constants
 import com.example.mvvmglobalnewsapp.utils.Resource
+import kotlin.properties.Delegates
 
-const val ARTICLE_URL_TO_IMAGE = "articleUrlToImage"
-const val ARTICLE_TITLE = "articleTitle"
-const val ARTICLE_CONTENT = "articleContent"
 const val ARTICLE = "article"
 
 open class BaseFragment : Fragment() {
 
+    //region Define Variables
     protected lateinit var mainViewModel: MainViewModel
 
-    private lateinit var recyclerView: RecyclerView
+    protected lateinit var recyclerView: RecyclerView
     lateinit var newsAdapter: NewsAdapter
 
     private lateinit var progressBar: ProgressBar
 
-    private lateinit var baseIntent: Intent
+    private lateinit var baseFragmentIntent: Intent
+
+    //endregion
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +50,7 @@ open class BaseFragment : Fragment() {
     private fun init(view: View) {
         recyclerView = view.findViewById(R.id.recyclerView)
         progressBar = view.findViewById(R.id.progressBar_loadingIndicator)
-        baseIntent = Intent(requireContext(), ArticleContentActivity().javaClass)
+        baseFragmentIntent = Intent(requireContext(), ArticleContentActivity().javaClass)
         setupRecyclerView()
     }
 
@@ -62,8 +65,8 @@ open class BaseFragment : Fragment() {
     private fun itemClickListener() {
         newsAdapter.setOnItemClickListener(object : NewsAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                baseIntent.putExtra(ARTICLE, newsAdapter.articlesList.get(position))
-                startActivity(baseIntent)
+                baseFragmentIntent.putExtra(ARTICLE, newsAdapter.articlesList[position])
+                startActivity(baseFragmentIntent)
             }
         })
     }
@@ -73,13 +76,13 @@ open class BaseFragment : Fragment() {
             is Resource.Success -> {
                 hideProgressBar()
                 resource.data?.let { newsResponse ->
-                    newsAdapter.differ.submitList(newsResponse.articles)
+                    newsAdapter.differ.submitList(newsResponse.articles.toList())
                 }
             }
             is Resource.Error -> {
                 hideProgressBar()
                 resource.message?.let { message ->
-                    Log.e("LOG_TAG", "An error occured: $message")
+                    Log.e("BaseFragment", "An error occured: $message")
                 }
             }
             is Resource.Loading -> {
@@ -88,12 +91,28 @@ open class BaseFragment : Fragment() {
         }
     }
 
-    private fun hideProgressBar() {
+    protected open fun hideProgressBar() {
         progressBar.visibility = View.INVISIBLE
     }
 
-    private fun showProgressBar() {
+    protected open fun showProgressBar() {
         progressBar.visibility = View.VISIBLE
     }
 
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

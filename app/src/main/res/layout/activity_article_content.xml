@@ -28,7 +28,6 @@
                 android:layout_height="match_parent"
                 android:contentDescription="article url"
                 android:scaleType="centerCrop"
-                android:src="@drawable/picture"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7" />
 
