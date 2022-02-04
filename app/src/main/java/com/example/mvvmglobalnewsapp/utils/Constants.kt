@@ -17,7 +17,7 @@ class Constants {
         const val TECHNOLOGY_PAGE_NUMBER = 6
 
         // Api Informations
-        const val API_KEY: String = "ab58878713044fffa03feab177e6fda6"
+        const val API_KEY: String = "f01c24d59a8e40df841f4a01dae3bc6a"
         const val BASE_URL: String = "https://newsapi.org/"
 
         const val QUERY_PAGE_SIZE = 20

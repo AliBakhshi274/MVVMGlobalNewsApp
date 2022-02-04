@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -16,6 +17,7 @@ import com.example.mvvmglobalnewsapp.adapters.ViewpagerAdapter
 import com.example.mvvmglobalnewsapp.database.ArticleDatabase
 import com.example.mvvmglobalnewsapp.repository.NewsRepository
 import com.example.mvvmglobalnewsapp.ui.about.AboutActivity
+import com.example.mvvmglobalnewsapp.ui.no_internet_connection.noInternetConnectionActivity
 import com.example.mvvmglobalnewsapp.ui.saved.SavedNewsActivity
 import com.example.mvvmglobalnewsapp.ui.search.SearchActivity
 import com.example.mvvmglobalnewsapp.ui.settings.SettingsActivity
@@ -41,12 +43,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         mvvmSkeleton()
 
-        uiFeatures()
+        hasInternetConnection()
 
+    }
+
+    private fun hasInternetConnection() {
+        if (viewModel.hasInternetConnection()) {
+            setContentView(R.layout.activity_main)
+            uiFeatures()
+        } else {
+            startActivity(Intent(this, noInternetConnectionActivity::class.java))
+        }
     }
 
     private fun mvvmSkeleton() {
@@ -150,7 +160,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu, menu)
         return true
     }
 

@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MvvmGlobalNewsApp">
         <activity
+            android:name=".ui.no_internet_connection.noInternetConnectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.saved.SavedNewsActivity"
             android:exported="false" />
         <activity

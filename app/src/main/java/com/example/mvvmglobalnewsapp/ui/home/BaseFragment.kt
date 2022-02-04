@@ -85,6 +85,7 @@ open class BaseFragment : Fragment() {
                 resource.message?.let { message ->
                     Toast.makeText(activity, "An error occurred: $message", Toast.LENGTH_SHORT)
                         .show()
+
                 }
             }
             is Resource.Loading -> {
